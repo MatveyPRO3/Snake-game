@@ -28,14 +28,15 @@ colors = {
     "apple": (255,0,0)
 }
 
+snake_size = (10,10)
+
 snake_pos = {
-    "x": width/2-5,
-    "y": height/2-5,
+    "x": round(width//2 / 10)*10,
+    "y": round(height//2 / 10)*10,
     "x_change": 0,
     "y_change": 0
 }
 
-snake_size = (10,10)
 
 Pause = False
 
@@ -134,8 +135,8 @@ while not game_end:
         food_size[1]
     ])
 
-    if (snake_pos["x"] == food_pos["x"]
-        and snake_pos["y"] == food_pos["y"]):
+    if (snake_pos["x"] == food_pos["x"]   
+        and snake_pos["y"] == food_pos["y"]):# food eaten
         food_eaten+=1
         clicksound()
         snake_tails.append([food_pos["x"],food_pos["y"]])
@@ -155,7 +156,7 @@ while not game_end:
         display.blit(score,(0,0))
     
     score = font.render("Score: "+str(food_eaten),1,(255,255,0),(0,0,0))
-    display.blit(score,(50,50))
+    display.blit(score,(snake_pos["x"]+10,snake_pos["y"]-20))
     pygame.display.update()
 
 
